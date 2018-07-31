@@ -1,0 +1,12 @@
+<div>
+  <h2>Ecommerce site (exercise)</h2>
+  <img [src]="product.image" alt="table">
+  <h3>({{product.name}})</h3>
+  <div class="name" [class]="product.isOnSales ? 'onsales' : 'notonsales'">$ {{product.name}}</div>
+  <div>quantity: {{product.quantity}}</div>
+  <div>
+    <button (click)="addQuantity($event)" [disabled]="checkCurrentQuantity">Add 1</button>
+    <button (click)="deductQuantity($event)">Deduct 1</button>
+  </div>
+
+</div>
