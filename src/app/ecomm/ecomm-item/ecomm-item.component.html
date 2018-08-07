@@ -1,12 +1,27 @@
-<div>
-  <h2>Ecommerce site (exercise)</h2>
-  <img [src]="product.image" alt="table">
-  <h3>({{product.name}})</h3>
-  <div class="name" [class]="product.isOnSales ? 'onsales' : 'notonsales'">$ {{product.name}}</div>
-  <div>quantity: {{product.quantity}}</div>
-  <div>
-    <button (click)="addQuantity($event)" [disabled]="checkCurrentQuantity">Add 1</button>
-    <button (click)="deductQuantity($event)">Deduct 1</button>
-  </div>
+<h1>Ecommerce site (exercise)</h1>
+<div class="column" *ngFor="let product of products; index as i; trackBy: checkStockByCode">
+  <h2>({{product.name}})</h2>
+  <img [src]="product.image" alt="product.image.name" height="300" width="300">
 
+  <div class="name" [ngClass]="product.color">$ {{product.name}}</div>
+  <div>
+    quantity: {{product.quantity}}
+  </div>
+  <div>
+    <!-- (click)="addQuantity($event, product)"  -->
+    <button (click)="updateQuantity(product, 1)" [disabled]="product.quantity < 0 || product.quantity >=  10">
+      Add 1
+    </button>
+    <!-- (click)="deductQuantity($event, product)"  -->
+    <button (click)="updateQuantity(product, -1)" [disabled]="product.quantity == 0">
+      Deduct 1
+    </button>
+  </div>
+  <select>
+    <option *ngFor="let qty of quantity">
+      {{qty}}
+      </option>
+  </select>
+
+  <pre>{{qty | json}}</pre>
 </div>
